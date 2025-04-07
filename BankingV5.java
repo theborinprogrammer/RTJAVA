@@ -1,7 +1,7 @@
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Random;
-import java.util.regex.Pattern;
+import java.util.Scanner;
+//import java.util.regex.Pattern;
 
 class DebitCard {
     private String cardNumber;
@@ -26,10 +26,15 @@ class DebitCard {
     /**
      * Generates a valid card number based on the card type
      * VISA cards start with 4, Mastercard cards start with 5
-     * @param cardType The type of card to generate number for
+     * @param cardType The type of card to generate number for (expected: "VISA" or "MASTERCARD")
      * @return A 16-digit card number string
+     * @throws IllegalArgumentException if the cardType is invalid
      */
     private String generateCardNumber(String cardType) {
+        if (!"VISA".equals(cardType) && !"MASTERCARD".equals(cardType)) {
+            throw new IllegalArgumentException("Invalid card type. Expected 'VISA' or 'MASTERCARD'.");
+        }
+
         Random random = new Random();
         StringBuilder cardNumber = new StringBuilder();
         
